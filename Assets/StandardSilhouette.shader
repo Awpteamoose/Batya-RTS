@@ -49,7 +49,7 @@ Shader "Standard with Silhouette"
 
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" "PerformanceChecks"="False" }
+		Tags { "RenderType"="Opaque" "PerformanceChecks"="False" "Queue" = "Transparent+1" }
 		LOD 300
 	
 		Pass
@@ -60,6 +60,7 @@ Shader "Standard with Silhouette"
 			Cull Off
 			Zwrite Off
 			ZTest Always
+			Blend SrcAlpha OneMinusSrcAlpha
 			
 			CGPROGRAM
 				#pragma vertex vert
@@ -69,6 +70,7 @@ Shader "Standard with Silhouette"
 					return mul (UNITY_MATRIX_MVP, v);
 				}
 
+				//uniform sampler2D _MainTex;
 				fixed4 _SilhouetteColor;
 
 				fixed4 frag() : SV_Target {

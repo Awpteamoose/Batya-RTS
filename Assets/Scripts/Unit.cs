@@ -4,29 +4,38 @@ using System.Collections;
 public class Unit : MonoBehaviour
 {
 	public bool selected;
-	public RTSController controller;
 
-	void Start()
+	private NavMeshAgent agent;
+	private new Renderer renderer;
+
+	void Awake()
 	{
-		controller.ownedUnits.Add(this);		
+		agent = GetComponent<NavMeshAgent>();
+		renderer = GetComponent<Renderer>();
 	}
 
 	public void Select()
 	{
 		selected = true;
-		GetComponent<Renderer>().material.color = Color.red;
-		GetComponent<Renderer>().material.SetColor("_SilhouetteColor", Color.magenta);
+		renderer.material.color = Color.red;
+		renderer.material.SetColor("_SilhouetteColor", new Color(1f, 0f, 1f, 0.25f));
 	}
 
 	public void Deselect()
 	{
 		selected = true;
-		GetComponent<Renderer>().material.color = Color.green;
-		GetComponent<Renderer>().material.SetColor("_SilhouetteColor", Color.cyan);
+		renderer.material.color = Color.green;
+		renderer.material.SetColor("_SilhouetteColor", new Color(0f, 1f, 1f, 0.25f));
 	}
 
 	public void Move(Vector3 destination)
 	{
-		GetComponent<NavMeshAgent>().SetDestination(destination);
+		agent.Resume();
+		agent.SetDestination(destination);
+	}
+
+	public void Stop()
+	{
+		agent.Stop();
 	}
 }
