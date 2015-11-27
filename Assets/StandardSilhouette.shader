@@ -55,7 +55,10 @@ Shader "Standard with Silhouette"
 		Pass
 		{
 			Name "Silhouette"
-			ZWrite Off
+			Tags { "LightMode" = "Always" }
+
+			Cull Off
+			Zwrite Off
 			ZTest Always
 			
 			CGPROGRAM
@@ -69,7 +72,7 @@ Shader "Standard with Silhouette"
 				fixed4 _SilhouetteColor;
 
 				fixed4 frag() : SV_Target {
-					return _SilhouetteColor;//fixed4(0.0,1.0,1.0,1.0);
+					return _SilhouetteColor;
 				}
 			ENDCG
 		}

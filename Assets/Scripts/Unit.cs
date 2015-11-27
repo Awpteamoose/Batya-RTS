@@ -4,35 +4,29 @@ using System.Collections;
 public class Unit : MonoBehaviour
 {
 	public bool selected;
-	public RTSController.Team team;
+	public RTSController controller;
 
-	void Update()
+	void Start()
 	{
-		if (GetComponent<Renderer>().isVisible && Input.GetMouseButton(0))
-		{
-			selected = RTSController.Selected(transform.position);
-		}
-
-		if (selected)
-		{
-			GetComponent<Renderer>().material.color = Color.red;
-			GetComponent<Renderer>().material.SetColor("_SilhouetteColor", Color.magenta);
-			if (Input.GetMouseButtonUp(1))
-			{
-				// right mouse released - move
-				GetComponent<NavMeshAgent>().SetDestination(RTSController.destination);
-			}
-		}
-		else
-		{
-			GetComponent<Renderer>().material.color = Color.green;
-			GetComponent<Renderer>().material.SetColor("_SilhouetteColor", Color.cyan);
-		}
-
+		controller.ownedUnits.Add(this);		
 	}
 
-	void OnMouseUp()
+	public void Select()
 	{
 		selected = true;
+		GetComponent<Renderer>().material.color = Color.red;
+		GetComponent<Renderer>().material.SetColor("_SilhouetteColor", Color.magenta);
+	}
+
+	public void Deselect()
+	{
+		selected = true;
+		GetComponent<Renderer>().material.color = Color.green;
+		GetComponent<Renderer>().material.SetColor("_SilhouetteColor", Color.cyan);
+	}
+
+	public void Move(Vector3 destination)
+	{
+		GetComponent<NavMeshAgent>().SetDestination(destination);
 	}
 }
