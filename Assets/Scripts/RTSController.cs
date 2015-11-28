@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 
 public class RTSController : MonoBehaviour
 {
@@ -99,31 +97,31 @@ public class RTSController : MonoBehaviour
 
 			if (Physics.Raycast(r, out hit, Mathf.Infinity, layerMask))
 			{
-				this.DrawSphere(hit.point, 5);
+				this.DrawSphere(hit.point);
 
 				foreach (var unit in selectedUnits)
-					unit.Move(hit.point);
+					unit.CmdMove(hit.point);
 			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.S))
 		{
 			foreach (var unit in selectedUnits)
-				unit.Stop();
+				unit.CmdStop();
 		}
 
-		var cameraPos = Camera.main.transform.position;
-		var step = 50 * Time.deltaTime;
-		if (Input.mousePosition.x < 1f)
-			cameraPos.x -= step;
-		else if (Input.mousePosition.x > Screen.width - 1f)
-			cameraPos.x += step;
-		if (Input.mousePosition.y < 1f)
-			cameraPos.z -= step;
-		else if (Input.mousePosition.y > Screen.height - 1f)
-			cameraPos.z += step;
+		//var cameraPos = Camera.main.transform.position;
+		//var step = 50 * Time.deltaTime;
+		//if (Input.mousePosition.x < 1f)
+		//	cameraPos.x -= step;
+		//else if (Input.mousePosition.x > Screen.width - 1f)
+		//	cameraPos.x += step;
+		//if (Input.mousePosition.y < 1f)
+		//	cameraPos.z -= step;
+		//else if (Input.mousePosition.y > Screen.height - 1f)
+		//	cameraPos.z += step;
 
-		Camera.main.transform.position = cameraPos;
+		//Camera.main.transform.position = cameraPos;
 	}
 
 }

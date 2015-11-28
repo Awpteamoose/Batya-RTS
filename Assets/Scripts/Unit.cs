@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Unit : MonoBehaviour
+public class Unit : NetworkBehaviour
 {
 	public bool selected;
 
@@ -27,14 +28,16 @@ public class Unit : MonoBehaviour
 		renderer.material.color = Color.green;
 		renderer.material.SetColor("_SilhouetteColor", new Color(0f, 1f, 1f, 0.25f));
 	}
-
-	public void Move(Vector3 destination)
+	
+	[Command]
+	public void CmdMove(Vector3 destination)
 	{
 		agent.Resume();
 		agent.SetDestination(destination);
 	}
 
-	public void Stop()
+	[Command]
+	public void CmdStop()
 	{
 		agent.Stop();
 	}
