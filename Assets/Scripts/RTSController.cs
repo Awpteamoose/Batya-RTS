@@ -71,7 +71,7 @@ public class RTSController : MonoBehaviour
 			// No point checking units we don't own
 			foreach (var unit in ownedUnits)
 			{
-				if (!unit.GetComponent<Renderer>().isVisible) continue;
+				//if (!unit.GetComponent<Renderer>().isVisible) continue;
 				var camPos = Camera.main.WorldToScreenPoint(unit.transform.position);
 				camPos.y = Screen.height - camPos.y;
 				if (!selection.Contains(camPos))
@@ -108,6 +108,12 @@ public class RTSController : MonoBehaviour
 		{
 			foreach (var unit in selectedUnits)
 				unit.CmdStop();
+		}
+
+		if (Input.GetKeyDown(KeyCode.A))
+		{
+			foreach (var unit in selectedUnits)
+				unit.CmdUseAbility(Input.mousePosition);
 		}
 
 		//var cameraPos = Camera.main.transform.position;

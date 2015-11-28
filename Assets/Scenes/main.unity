@@ -75,7 +75,7 @@ NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
     serializedVersion: 2
-    agentRadius: .5
+    agentRadius: .649999976
     agentHeight: 2
     agentSlope: 45
     agentClimb: .400000006
@@ -83,7 +83,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    cellSize: .166666672
+    cellSize: .216666654
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: 6d055a32159fdeb4cac2709b4d235dc5, type: 2}
 --- !u!1001 &64930208
@@ -1123,7 +1123,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1705563221}
   m_LocalRotation: {x: .382683456, y: 0, z: 0, w: .923879504}
-  m_LocalPosition: {x: 0, y: 60, z: -65}
+  m_LocalPosition: {x: 0, y: 35, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1468,16 +1468,8 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 165834, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 165834, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
       propertyPath: m_Name
       value: Team1-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 165834, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
-      propertyPath: m_TagString
-      value: Team1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}

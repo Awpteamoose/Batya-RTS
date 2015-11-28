@@ -1,20 +1,77 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Unit : NetworkBehaviour
 {
-	public bool selected;
+	public float stunDuration;
+
+	[ReadOnly] public bool selected;
+	[ReadOnly] public bool fallen;
+
 	[HideInInspector] public RTSController owner;
 
+	private Collider helpCollider;
 	private NavMeshAgent agent;
 	private new Renderer renderer;
 	private new Rigidbody rigidbody;
+	private Ability ability;
+
+	private float standAfter;
+	private List<Unit> adjacentBabushkas = new List<Unit>();
 
 	void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		renderer = GetComponent<Renderer>();
+		rigidbody = GetComponent<Rigidbody>();
+		ability = GetComponent<Ability>();
+	}
+
+	void Start()
+	{
+		helpCollider = transform.FindChild("Help").GetComponent<Collider>();
+	}
+
+	void Update()
+	{
+		if (!isServer) return;
+		if (!fallen)
+		{
+			var dotResult = Vector3.Dot(agent.desiredVelocity.normalized, (transform.rotation * Vector3.forward).normalized);
+			agent.speed = dotResult > 0.55f ? 4f : 1f;
+		}
+		else
+		{
+			standAfter -= Time.deltaTime;
+			foreach (var babushka in adjacentBabushkas)
+			{
+				if (babushka.owner == owner && !babushka.fallen)
+					standAfter -= Time.deltaTime;
+			}
+			if (standAfter <= 0)
+				CmdStand();
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (!isServer) return;
+		var babushka = other.GetComponent<Unit>();
+		if (babushka)
+		{
+			adjacentBabushkas.Add(babushka);
+		}
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if (!isServer) return;
+		var babushka = other.GetComponent<Unit>();
+		if (babushka && babushka.owner == owner)
+		{
+			adjacentBabushkas.Remove(babushka);
+		}
 	}
 
 	public void Select()
@@ -31,28 +88,46 @@ public class Unit : NetworkBehaviour
 		renderer.material.SetColor("_SilhouetteColor", new Color(0f, 1f, 1f, 0.25f));
 	}
 
-	public void Fall()
+	[Command]
+	public void CmdFall(Vector3 direction)
 	{
+		standAfter = stunDuration;
 		rigidbody.isKinematic = false;
 		agent.enabled = false;
+		rigidbody.AddForce(direction.normalized * 10, ForceMode.Impulse);
+		fallen = true;
+		helpCollider.enabled = true;
 	}
 
-	public void Stand()
+	[Command]
+	public void CmdStand()
 	{
 		rigidbody.isKinematic = true;
-		agent.enabled = false;
+		agent.enabled = true;
+		fallen = false;
+		helpCollider.enabled = false;
+		adjacentBabushkas.Clear();
 	}
 	
 	[Command]
 	public void CmdMove(Vector3 destination)
 	{
+		if (!agent.enabled) return;
 		agent.Resume();
 		agent.SetDestination(destination);
+		this.After(1, () => CmdFall(Vector3.left));
 	}
 
 	[Command]
 	public void CmdStop()
 	{
 		agent.Stop();
+	}
+
+	[Command]
+	public void CmdUseAbility(Vector3 position)
+	{
+		if (!fallen)
+			ability.Use(position);
 	}
 }
