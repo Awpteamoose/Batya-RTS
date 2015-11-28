@@ -5,9 +5,11 @@ using System.Collections;
 public class Unit : NetworkBehaviour
 {
 	public bool selected;
+	[HideInInspector] public RTSController owner;
 
 	private NavMeshAgent agent;
 	private new Renderer renderer;
+	private new Rigidbody rigidbody;
 
 	void Awake()
 	{
@@ -27,6 +29,18 @@ public class Unit : NetworkBehaviour
 		selected = true;
 		renderer.material.color = Color.green;
 		renderer.material.SetColor("_SilhouetteColor", new Color(0f, 1f, 1f, 0.25f));
+	}
+
+	public void Fall()
+	{
+		rigidbody.isKinematic = false;
+		agent.enabled = false;
+	}
+
+	public void Stand()
+	{
+		rigidbody.isKinematic = true;
+		agent.enabled = false;
 	}
 	
 	[Command]

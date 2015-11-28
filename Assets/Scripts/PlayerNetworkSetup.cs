@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-using JetBrains.Annotations;
 
 public class PlayerNetworkSetup : NetworkBehaviour
 {
@@ -20,6 +19,7 @@ public class PlayerNetworkSetup : NetworkBehaviour
 			{
 				var unit = unitGo.GetComponent<Unit>();
 				rtsController.ownedUnits.Add(unit);
+				unit.owner = rtsController;
 			}
 		}
 		else
