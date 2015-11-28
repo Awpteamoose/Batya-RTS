@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Unit : NetworkBehaviour
 {
 	public float stunDuration;
+	public string abilityChoice;
 
 	[ReadOnly] public bool selected;
 	[ReadOnly] public bool fallen;
@@ -15,21 +16,21 @@ public class Unit : NetworkBehaviour
 	private NavMeshAgent agent;
 	private new Renderer renderer;
 	private new Rigidbody rigidbody;
-	private Ability ability;
 
 	private float standAfter;
 	private List<Unit> adjacentBabushkas = new List<Unit>();
+	private Ability ability;
 
 	void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
 		renderer = GetComponent<Renderer>();
 		rigidbody = GetComponent<Rigidbody>();
-		ability = GetComponent<Ability>();
 	}
 
 	void Start()
 	{
+		ability = Abilities.list[abilityChoice];
 		helpCollider = transform.FindChild("Help").GetComponent<Collider>();
 	}
 
@@ -115,7 +116,7 @@ public class Unit : NetworkBehaviour
 		if (!agent.enabled) return;
 		agent.Resume();
 		agent.SetDestination(destination);
-		this.After(1, () => CmdFall(Vector3.left));
+		//this.After(1, () => CmdFall(Vector3.left));
 	}
 
 	[Command]

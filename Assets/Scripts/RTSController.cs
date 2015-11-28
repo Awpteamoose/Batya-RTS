@@ -35,7 +35,7 @@ public class RTSController : MonoBehaviour
 			if (Physics.Raycast(r, out hit, Mathf.Infinity, layerMask))
 			{
 				var unit = hit.transform.GetComponent<Unit>();
-				if (ownedUnits.Contains(unit))
+				if (ownedUnits.Contains(unit) && !selectedUnits.Contains(unit))
 				{
 					unit.Select();
 					selectedUnits.Add(unit);
@@ -83,8 +83,11 @@ public class RTSController : MonoBehaviour
 					}
 					continue;
 				}
-				unit.Select();
-				selectedUnits.Add(unit);
+				else if (!selectedUnits.Contains(unit))
+				{
+					unit.Select();
+					selectedUnits.Add(unit);
+				}
 			}
 		}
 

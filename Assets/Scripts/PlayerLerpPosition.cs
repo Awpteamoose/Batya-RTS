@@ -29,6 +29,11 @@ public class PlayerLerpPosition : NetworkBehaviour
 		return 0.016f;
 	}
 
+	public override int GetNetworkChannel()
+	{
+		return 1;
+	}
+
 	void FixedUpdate()
 	{
 		if (isServer)
