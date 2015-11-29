@@ -7,6 +7,7 @@ public class Cache : NetworkBehaviour
 	private new Collider collider;
 	public float maxFoodAmount = 200f;
 	[ReadOnly] public float foodAmount;
+	private GameObject style;
 
 	void Awake()
 	{
@@ -50,12 +51,14 @@ public class Cache : NetworkBehaviour
 	[ClientRpc]
 	void RpcEnableVisual()
 	{
-		GetComponentInChildren<Renderer>().material.color = Color.yellow;
+		var styles = transform.Find("Styles");
+		style = transform.GetChild(Random.Range(0, transform.childCount)).gameObject;
+		style.SetActive(true);
 	}
 
 	[ClientRpc]
 	void RpcDisableVisual()
 	{
-		GetComponentInChildren<Renderer>().material.color = Color.white;
+		style.SetActive(false);
 	}
 }
