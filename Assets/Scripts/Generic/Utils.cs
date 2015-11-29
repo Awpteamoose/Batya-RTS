@@ -22,14 +22,19 @@ public static class Utils
 		if (after != null) after();
 	}
 
-	public static void After(this MonoBehaviour caller, float time, Action callback)
+	public static Coroutine After(this MonoBehaviour caller, float time, Action callback)
 	{
-		caller.StartCoroutine(After(time, callback));
+		return caller.StartCoroutine(After(time, callback));
 	}
 
-	public static void DoFor(this MonoBehaviour caller, float time, Action process, Action after = null)
+	public static Coroutine DoFor(this MonoBehaviour caller, float time, Action process, Action after = null)
 	{
-		caller.StartCoroutine(DoFor(time, process, after));
+		return caller.StartCoroutine(DoFor(time, process, after));
+	}
+
+	public static void Cancel(this MonoBehaviour caller, Coroutine co)
+	{
+		caller.StopCoroutine(co);
 	}
 
 	public static GameObject DebugSphere(Vector3 position, float radius, Color color)
@@ -38,6 +43,7 @@ public static class Utils
 		s.transform.position = position;
 		s.transform.localScale = new Vector3(radius, radius, radius);
 		s.GetComponent<Renderer>().material.color = color;
+		Object.Destroy(s.GetComponent<Collider>());
 		return s;
 	}
 

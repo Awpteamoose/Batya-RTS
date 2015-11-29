@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 35cab0f6b860e2742a0f885a62556302
-timeCreated: 1448724785
+guid: 6d0d8d13183e74449b326d162019800d
+timeCreated: 1448752406
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -65,8 +65,10 @@ ModelImporter:
     4300018: Wheel3
     4300020: Wheel4
     4300022: Wheel1
+    7400000: Take 001
+    9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -91,7 +93,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importBlendShapes: 1
+    importBlendShapes: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -104,11 +106,11 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 0
     splitTangentsAcrossUV: 1
-    normalImportMode: 0
-    tangentImportMode: 1
-  importAnimation: 1
+    normalImportMode: 1
+    tangentImportMode: 2
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []

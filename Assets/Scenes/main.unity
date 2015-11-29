@@ -141,6 +141,10 @@ Prefab:
       propertyPath: abilityChoice
       value: TrolleyCharge
       objectReference: {fileID: 0}
+    - target: {fileID: 11441872, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
   m_IsPrefabParent: 0
@@ -207,6 +211,10 @@ Prefab:
       propertyPath: abilityChoice
       value: MilkToss
       objectReference: {fileID: 0}
+    - target: {fileID: 11441872, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
   m_IsPrefabParent: 0
@@ -268,6 +276,10 @@ Prefab:
     - target: {fileID: 11417088, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
       propertyPath: abilityChoice
       value: CatToss
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441872, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
@@ -780,6 +792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c72e50cf7efc9a4394b6faead89cb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trolleyCharge: {fileID: 170430, guid: 2d04abe0ba8a9334f97f49f193fbc531, type: 2}
 --- !u!1 &1086969924
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,6 +957,10 @@ Prefab:
     - target: {fileID: 11417088, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
       propertyPath: abilityChoice
       value: MilkToss
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441872, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
@@ -1313,6 +1330,10 @@ Prefab:
       propertyPath: abilityChoice
       value: CatToss
       objectReference: {fileID: 0}
+    - target: {fileID: 11441872, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
+      propertyPath: m_LocalPlayerAuthority
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
   m_IsPrefabParent: 0
@@ -1529,10 +1550,6 @@ Prefab:
     - target: {fileID: 165834, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
       propertyPath: m_Name
       value: Team1-1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11417088, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
-      propertyPath: abilityChoice
-      value: TrolleyCharge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}

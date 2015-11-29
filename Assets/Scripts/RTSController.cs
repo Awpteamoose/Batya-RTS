@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
-public class RTSController : MonoBehaviour
+public class RTSController : NetworkBehaviour
 {
 	public RectTransform selectionBox;
 
@@ -103,34 +104,60 @@ public class RTSController : MonoBehaviour
 				this.DrawSphere(hit.point);
 
 				foreach (var unit in selectedUnits)
-					unit.CmdMove(hit.point);
+					CmdMove(unit.name, hit.point);
 			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.S))
 		{
 			foreach (var unit in selectedUnits)
-				unit.CmdStop();
+				CmdStop(unit.name);
 		}
 
 		if (Input.GetKeyDown(KeyCode.A))
 		{
-			foreach (var unit in selectedUnits)
-				unit.CmdUseAbility(Input.mousePosition);
+			RaycastHit hit;
+			const int layerMask = 1 << 8; // only hit the Walkable layer
+			Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if (Physics.Raycast(r, out hit, Mathf.Infinity, layerMask))
+				foreach (var unit in selectedUnits)
+					CmdUseAbility(unit.name, hit.point);
 		}
 
-		//var cameraPos = Camera.main.transform.position;
-		//var step = 50 * Time.deltaTime;
-		//if (Input.mousePosition.x < 1f)
-		//	cameraPos.x -= step;
-		//else if (Input.mousePosition.x > Screen.width - 1f)
-		//	cameraPos.x += step;
-		//if (Input.mousePosition.y < 1f)
-		//	cameraPos.z -= step;
-		//else if (Input.mousePosition.y > Screen.height - 1f)
-		//	cameraPos.z += step;
+		if (!Application.runInBackground)
+		{
+			//var cameraPos = Camera.main.transform.position;
+			//var step = 50 * Time.deltaTime;
+			//if (Input.mousePosition.x < 1f)
+			//	cameraPos.x -= step;
+			//else if (Input.mousePosition.x > Screen.width - 1f)
+			//	cameraPos.x += step;
+			//if (Input.mousePosition.y < 1f)
+			//	cameraPos.z -= step;
+			//else if (Input.mousePosition.y > Screen.height - 1f)
+			//	cameraPos.z += step;
 
-		//Camera.main.transform.position = cameraPos;
+			//Camera.main.transform.position = cameraPos;
+		}
+	}
+
+	[Command]
+	void CmdMove(string unit_name, Vector3 position)
+	{
+		Units.list[unit_name].Move(position);
+	}
+
+	[Command]
+	void CmdStop(string unit_name)
+	{
+		Units.list[unit_name].Stop();
+	}
+
+	[Command]
+	void CmdUseAbility(string unit_name, Vector3 position)
+	{
+		Units.list[unit_name].UseAbility(position);
 	}
 
 }

@@ -24,10 +24,10 @@ public class PlayerLerpPosition : NetworkBehaviour
 		Destroy(GetComponent<Collider>());
 	}
 
-	public override float GetNetworkSendInterval()
-	{
-		return 0.016f;
-	}
+	//public override float GetNetworkSendInterval()
+	//{
+	//	return 0.016f;
+	//}
 
 	public override int GetNetworkChannel()
 	{

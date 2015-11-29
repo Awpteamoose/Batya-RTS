@@ -13,6 +13,7 @@ public class Unit : NetworkBehaviour
 	[HideInInspector] public RTSController owner;
 
 	private Collider helpCollider;
+	private Collider trolleyCollider;
 	private NavMeshAgent agent;
 	private new Renderer renderer;
 	private new Rigidbody rigidbody;
@@ -26,12 +27,14 @@ public class Unit : NetworkBehaviour
 		agent = GetComponent<NavMeshAgent>();
 		renderer = GetComponent<Renderer>();
 		rigidbody = GetComponent<Rigidbody>();
+		Units.list[name] = this;
 	}
 
 	void Start()
 	{
 		ability = Abilities.list[abilityChoice];
 		helpCollider = transform.FindChild("Help").GetComponent<Collider>();
+		trolleyCollider = transform.FindChild("Babywka").FindChild("Trolley").GetComponent<Collider>();
 	}
 
 	void Update()
@@ -51,7 +54,7 @@ public class Unit : NetworkBehaviour
 					standAfter -= Time.deltaTime;
 			}
 			if (standAfter <= 0)
-				CmdStand();
+				Stand();
 		}
 	}
 
@@ -78,6 +81,7 @@ public class Unit : NetworkBehaviour
 	public void Select()
 	{
 		selected = true;
+		renderer.enabled = true;
 		renderer.material.color = Color.red;
 		renderer.material.SetColor("_SilhouetteColor", new Color(1f, 0f, 1f, 0.25f));
 	}
@@ -85,50 +89,48 @@ public class Unit : NetworkBehaviour
 	public void Deselect()
 	{
 		selected = true;
+		renderer.enabled = false;
 		renderer.material.color = Color.green;
 		renderer.material.SetColor("_SilhouetteColor", new Color(0f, 1f, 1f, 0.25f));
 	}
 
-	[Command]
-	public void CmdFall(Vector3 direction)
+	public void Fall()
 	{
 		standAfter = stunDuration;
 		rigidbody.isKinematic = false;
 		agent.enabled = false;
-		rigidbody.AddForce(direction.normalized * 10, ForceMode.Impulse);
 		fallen = true;
 		helpCollider.enabled = true;
+		trolleyCollider.enabled = true;
 	}
 
-	[Command]
-	public void CmdStand()
+	public void Stand()
 	{
 		rigidbody.isKinematic = true;
 		agent.enabled = true;
 		fallen = false;
 		helpCollider.enabled = false;
+		trolleyCollider.enabled = false;
 		adjacentBabushkas.Clear();
 	}
 	
-	[Command]
-	public void CmdMove(Vector3 destination)
+	public void Move(Vector3 destination)
 	{
 		if (!agent.enabled) return;
 		agent.Resume();
 		agent.SetDestination(destination);
-		//this.After(1, () => CmdFall(Vector3.left));
+		//this.After(1, () => Fall(Vector3.left));
 	}
 
-	[Command]
-	public void CmdStop()
+	public void Stop()
 	{
 		agent.Stop();
 	}
 
-	[Command]
-	public void CmdUseAbility(Vector3 position)
+	public void UseAbility(Vector3 position)
 	{
+		this.DrawSphere(position);
 		if (!fallen)
-			ability.Use(position);
+			ability.Use(this, position);
 	}
 }
