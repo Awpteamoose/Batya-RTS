@@ -7,7 +7,7 @@ public class Cache : NetworkBehaviour
 	private new Collider collider;
 	public float maxFoodAmount = 200f;
 	[ReadOnly] public float foodAmount;
-	private GameObject style;
+	private string style;
 
 	void Awake()
 	{
@@ -18,7 +18,10 @@ public class Cache : NetworkBehaviour
 	{
 		collider.enabled = true;
 		foodAmount = maxFoodAmount;
-		RpcEnableVisual();
+		var styles = transform.Find("Styles");
+		style = styles.GetChild(Random.Range(0, styles.childCount)).name;
+		//style.SetActive(true);
+		RpcEnableVisual(style);
 	}
 
 	void OnDisable()
@@ -26,7 +29,7 @@ public class Cache : NetworkBehaviour
 		collider.enabled = false;
 		CacheManager.disabledCaches.Add(this);
 		CacheManager.totalCachesActive -= 1;
-		RpcDisableVisual();
+		RpcDisableVisual(style);
 	}
 	
 	void OnTriggerStay(Collider other)
@@ -49,16 +52,14 @@ public class Cache : NetworkBehaviour
 	}
 
 	[ClientRpc]
-	void RpcEnableVisual()
+	void RpcEnableVisual(string style)
 	{
-		var styles = transform.Find("Styles");
-		style = transform.GetChild(Random.Range(0, transform.childCount)).gameObject;
-		style.SetActive(true);
+		transform.Find("Styles").Find(style).gameObject.SetActive(true);
 	}
 
 	[ClientRpc]
-	void RpcDisableVisual()
+	void RpcDisableVisual(string style)
 	{
-		style.SetActive(false);
+		transform.Find("Styles").Find(style).gameObject.SetActive(false);
 	}
 }
