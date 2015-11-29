@@ -27,6 +27,7 @@ public class Cat : MonoBehaviour
 		// Take it from teh server
 		serverRts.ownedUnits.Remove(babushka);
 		serverRts.selectedUnits.Remove(babushka);
+		babushka.Deselect();
 
 		// Give it to the client
 		clientRts.ownedUnits.Add(babushka);
@@ -53,8 +54,9 @@ public class Cat : MonoBehaviour
 				Debug.Log("BABUSHKA OWNER IS SERVER");
 				var server = babushka.owner;
 				var client = owner;
-				ServerToClient(babushka, server, client);	
-				this.After(10, () => ClientToServer(babushka, server, client));
+				ServerToClient(babushka, server, client);
+				server.After(1, () => Debug.Log("WOOOOT WOOT"));
+				server.After(10, () => ClientToServer(babushka, server, client));
 			}
 			else
 			{
@@ -62,7 +64,8 @@ public class Cat : MonoBehaviour
 				var client = babushka.owner;
 				var server = owner;
 				ClientToServer(babushka, server, client);
-				this.After(10, () => ServerToClient(babushka, server, client));
+				server.After(1, () => Debug.Log("WOOOOT WORKS"));
+				server.After(10, () => ServerToClient(babushka, server, client));
 			}
 			Debug.Log("BABUSHKA CAPTURED");
 			this.Cancel(destroyCoroutine);

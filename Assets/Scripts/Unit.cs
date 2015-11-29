@@ -6,6 +6,7 @@ public class Unit : NetworkBehaviour
 {
 	public float stunDuration;
 	public string abilityChoice;
+	public float abilityCooldown;
 
 	[ReadOnly] public bool selected;
 	[ReadOnly] public bool fallen;
@@ -21,6 +22,7 @@ public class Unit : NetworkBehaviour
 	private float standAfter;
 	private List<Unit> adjacentBabushkas = new List<Unit>();
 	private Ability ability;
+	private float _abilityCooldown = 0;
 	private bool canStand;
 
 	void Awake()
@@ -57,6 +59,7 @@ public class Unit : NetworkBehaviour
 			if (standAfter <= 0 && canStand)
 				Stand();
 		}
+		_abilityCooldown -= Time.deltaTime;
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -145,8 +148,10 @@ public class Unit : NetworkBehaviour
 
 	public void UseAbility(Vector3 position)
 	{
-		this.DrawSphere(position);
-		if (!fallen)
+		if (!fallen && _abilityCooldown <= 0)
+		{
 			ability.Use(this, position);
+			_abilityCooldown = abilityCooldown;
+		}
 	}
 }
