@@ -2,10 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class RTSController : NetworkBehaviour
 {
 	public RectTransform selectionBox;
+	public Text team1Score;
+	public Text team2Score;
+	[ReadOnly] public float score;
 
 	public List<Unit> ownedUnits;
 	[HideInInspector] public List<Unit> selectedUnits;
@@ -15,6 +19,10 @@ public class RTSController : NetworkBehaviour
 
 	private void Update()
 	{
+		var pns = GetComponent<PlayerNetworkSetup>();
+		team1Score.text = pns.team1score.ToString("F");
+		team2Score.text = pns.team2score.ToString("F");
+
 		if (Input.GetMouseButtonDown(0))
 		{
 			// Deselect units and start selection
@@ -125,18 +133,18 @@ public class RTSController : NetworkBehaviour
 					CmdUseAbility(unit.name, hit.point);
 		}
 
-		var cameraPos = Camera.main.transform.position;
-		var step = 50 * Time.deltaTime;
-		if (Input.mousePosition.x < 1f)
-			cameraPos.x -= step;
-		else if (Input.mousePosition.x > Screen.width - 1f)
-			cameraPos.x += step;
-		if (Input.mousePosition.y < 1f)
-			cameraPos.z -= step;
-		else if (Input.mousePosition.y > Screen.height - 1f)
-			cameraPos.z += step;
+		//var cameraPos = Camera.main.transform.position;
+		//var step = 50 * Time.deltaTime;
+		//if (Input.mousePosition.x < 1f)
+		//	cameraPos.x -= step;
+		//else if (Input.mousePosition.x > Screen.width - 1f)
+		//	cameraPos.x += step;
+		//if (Input.mousePosition.y < 1f)
+		//	cameraPos.z -= step;
+		//else if (Input.mousePosition.y > Screen.height - 1f)
+		//	cameraPos.z += step;
 
-		Camera.main.transform.position = cameraPos;
+		//Camera.main.transform.position = cameraPos;
 	}
 
 	public void TransferUnit(Unit unit)

@@ -8,9 +8,11 @@ public class Unit : NetworkBehaviour
 	public string abilityChoice;
 	public float abilityCooldown;
 	public bool switchOff = false;
-
+	public float maxFoodAmount = 100f;
+	
 	[ReadOnly] public bool selected;
 	[ReadOnly] public bool fallen;
+	[ReadOnly] public float foodAmount;
 
 	[HideInInspector] public RTSController owner;
 
@@ -127,6 +129,7 @@ public class Unit : NetworkBehaviour
 
 	public void Stand()
 	{
+		foodAmount = 0f;
 		rigidbody.isKinematic = true;
 		agent.enabled = true;
 		fallen = false;

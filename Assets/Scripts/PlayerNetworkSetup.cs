@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerNetworkSetup : NetworkBehaviour
 {
+	public static RTSController player1;
+	public static RTSController player2;
+	[SyncVar] public float team1score;
+	[SyncVar] public float team2score;
+
 	// Use this for initialization
 	void Start () {
 		var rtsController = GetComponent<RTSController>();
@@ -13,6 +19,8 @@ public class PlayerNetworkSetup : NetworkBehaviour
 			// Setting up my own rts controller as a both server and a client
 			rtsController.enabled = true;
 			rtsController.selectionBox = GameObject.Find("SelectionBox").GetComponent<RectTransform>();
+			rtsController.team1Score = GameObject.Find("Team1 Score").GetComponent<Text>();
+			rtsController.team2Score = GameObject.Find("Team2 Score").GetComponent<Text>();
 
 			var team = GameObject.FindGameObjectsWithTag(isServer ? "Team1" : "Team2");
 			foreach (var unitGo in team)
@@ -21,11 +29,15 @@ public class PlayerNetworkSetup : NetworkBehaviour
 				rtsController.ownedUnits.Add(unit);
 				unit.owner = rtsController;
 			}
+
+			if (isServer)
+				player1 = rtsController;
 		}
 		else
 		{
 			if (isServer)
 			{
+				player2 = rtsController;
 				//Setting up other rts controller as a server
 			    var team2 = GameObject.FindGameObjectsWithTag("Team2");
 				foreach (var unitGo in team2)
@@ -40,5 +52,12 @@ public class PlayerNetworkSetup : NetworkBehaviour
 				// Setting up other rts controller as a client
 			}
 		}
+	}
+
+	void FixedUpdate()
+	{
+		if (!isServer || !player2) return;
+		team1score = player1.score;
+		team2score = player2.score;
 	}
 }
