@@ -139,6 +139,18 @@ public class RTSController : NetworkBehaviour
 		Camera.main.transform.position = cameraPos;
 	}
 
+	public void TransferUnit(Unit unit)
+	{
+		if (enabled)
+		{
+			Debug.Log("OWNER IS SERVER");
+		}
+		else
+		{
+			Debug.Log("OWNER IS CLIENT");
+		}
+	}
+
 	[Command]
 	void CmdMove(string unit_name, Vector3 position)
 	{
@@ -157,4 +169,17 @@ public class RTSController : NetworkBehaviour
 		Units.list[unit_name].UseAbility(position);
 	}
 
+	[ClientRpc]
+	public void RpcGrantUnit(string unit_name)
+	{
+		ownedUnits.Add(Units.list[unit_name]);
+	}
+
+	[ClientRpc]
+	public void RpcTakeUnit(string unit_name)
+	{
+		var unit = Units.list[unit_name];
+		ownedUnits.Remove(unit);
+		selectedUnits.Remove(unit);
+	}
 }

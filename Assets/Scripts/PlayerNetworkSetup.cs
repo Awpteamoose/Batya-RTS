@@ -22,22 +22,23 @@ public class PlayerNetworkSetup : NetworkBehaviour
 				unit.owner = rtsController;
 			}
 		}
-		//else
-		//{
-		//	if (isServer)
-		//	{
-		//		//Setting up other rts controller as a server
-		//	    var team2 = GameObject.FindGameObjectsWithTag("Team2");
-		//		foreach (var unitGo in team2)
-		//		{
-		//			var unitNid = unitGo.GetComponent<NetworkIdentity>();
-		//			unitNid.AssignClientAuthority(rtsNid.connectionToClient);
-		//		}
-		//	}
-		//	else
-		//	{
-		//		// Setting up other rts controller as a client
-		//	}
-		//}
+		else
+		{
+			if (isServer)
+			{
+				//Setting up other rts controller as a server
+			    var team2 = GameObject.FindGameObjectsWithTag("Team2");
+				foreach (var unitGo in team2)
+				{
+					var unit = unitGo.GetComponent<Unit>();
+					rtsController.ownedUnits.Add(unit);
+					unit.owner = rtsController;
+				}
+			}
+			else
+			{
+				// Setting up other rts controller as a client
+			}
+		}
 	}
 }

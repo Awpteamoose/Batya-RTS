@@ -21,6 +21,7 @@ public class Unit : NetworkBehaviour
 	private float standAfter;
 	private List<Unit> adjacentBabushkas = new List<Unit>();
 	private Ability ability;
+	private bool canStand;
 
 	void Awake()
 	{
@@ -53,7 +54,7 @@ public class Unit : NetworkBehaviour
 				if (babushka.owner == owner && !babushka.fallen)
 					standAfter -= Time.deltaTime;
 			}
-			if (standAfter <= 0)
+			if (standAfter <= 0 && canStand)
 				Stand();
 		}
 	}
@@ -75,6 +76,22 @@ public class Unit : NetworkBehaviour
 		if (babushka && babushka.owner == owner)
 		{
 			adjacentBabushkas.Remove(babushka);
+		}
+	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		if (collision.transform.tag == "Floor")
+		{
+			canStand = true;
+		}
+	}
+
+	void OnCollisionExit(Collision collision)
+	{
+		if (collision.transform.tag == "Floor")
+		{
+			canStand = false;
 		}
 	}
 
@@ -119,7 +136,6 @@ public class Unit : NetworkBehaviour
 		if (!agent.enabled) return;
 		agent.Resume();
 		agent.SetDestination(destination);
-		//this.After(1, () => Fall(Vector3.left));
 	}
 
 	public void Stop()
