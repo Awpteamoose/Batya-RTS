@@ -7,6 +7,7 @@ public class Unit : NetworkBehaviour
 	public float stunDuration;
 	public string abilityChoice;
 	public float abilityCooldown;
+	public bool switchOff = false;
 
 	[ReadOnly] public bool selected;
 	[ReadOnly] public bool fallen;
@@ -22,7 +23,7 @@ public class Unit : NetworkBehaviour
 	private float standAfter;
 	private List<Unit> adjacentBabushkas = new List<Unit>();
 	private Ability ability;
-	private float _abilityCooldown = 0;
+	private float _abilityCooldown;
 	private bool canStand;
 
 	void Awake()
@@ -148,7 +149,7 @@ public class Unit : NetworkBehaviour
 
 	public void UseAbility(Vector3 position)
 	{
-		if (!fallen && _abilityCooldown <= 0)
+		if (!fallen && (_abilityCooldown <= 0 || switchOff))
 		{
 			ability.Use(this, position);
 			_abilityCooldown = abilityCooldown;

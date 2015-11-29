@@ -16,12 +16,14 @@ public class TrolleyCharge : Ability
 		var parentTcp = self.GetComponentInParent<TrolleyChargeProjectile>();
 		if (parentTcp)
 		{
+			self.switchOff = false;
 			self.transform.SetParent(parentTcp.oldParent);
 			self.GetComponent<NavMeshAgent>().enabled = true;
 			self.GetComponent<Collider>().enabled = true;
 			GameObject.Destroy(parentTcp.gameObject);
 			return;
 		}
+		self.switchOff = true;
 		var trolley = self.transform.Find("Babywka").Find("Trolley");
 		var trolleyChargeInst = GameObject.Instantiate(trolleyCharge).transform;
 
