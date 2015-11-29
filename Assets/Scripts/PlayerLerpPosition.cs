@@ -6,8 +6,8 @@ public class PlayerLerpPosition : NetworkBehaviour
 {
 	public float lerpRate = 5;
 
-	private Vector3 syncPosition;
-	private Quaternion syncRotation;
+	[SyncVar] private Vector3 syncPosition;
+	[SyncVar] private Quaternion syncRotation;
 
 	private new Rigidbody rigidbody;
 
@@ -24,11 +24,6 @@ public class PlayerLerpPosition : NetworkBehaviour
 		Destroy(GetComponent<Collider>());
 	}
 
-	//public override float GetNetworkSendInterval()
-	//{
-	//	return 0.016f;
-	//}
-
 	public override int GetNetworkChannel()
 	{
 		return 1;
@@ -37,22 +32,22 @@ public class PlayerLerpPosition : NetworkBehaviour
 	void FixedUpdate()
 	{
 		if (isServer)
-			RpcTransmitPosition(rigidbody.position, rigidbody.rotation);
+		{
+			if (rigidbody.isKinematic)
+			{
+				syncPosition = transform.position;
+				syncRotation = transform.rotation;
+			}
+			else
+			{
+				syncPosition = rigidbody.position;
+				syncRotation = rigidbody.rotation;
+			}
+		}
 		else
-			LerpPosition();
-	}
-
-	void LerpPosition()
-	{
-		transform.position = Vector3.Lerp(transform.position, syncPosition, Time.deltaTime * lerpRate);
-		transform.rotation = Quaternion.Lerp(transform.rotation, syncRotation, Time.deltaTime * lerpRate);
-		Debug.DrawLine(transform.position, syncPosition, Color.red);
-	}
-
-	[ClientRpc]
-	void RpcTransmitPosition(Vector3 position, Quaternion rotation)
-	{
-		syncPosition = position;
-		syncRotation = rotation;
+		{
+			transform.position = Vector3.Lerp(transform.position, syncPosition, Time.deltaTime * lerpRate);
+			transform.rotation = Quaternion.Lerp(transform.rotation, syncRotation, Time.deltaTime * lerpRate);
+		}
 	}
 }
