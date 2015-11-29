@@ -21,7 +21,7 @@ public class PlayerLerpPosition : NetworkBehaviour
 		if (isServer) return;
 		Destroy(GetComponent<NavMeshAgent>());
 		Destroy(GetComponent<Rigidbody>());
-		Destroy(GetComponent<Collider>());
+		//Destroy(GetComponent<Collider>());
 	}
 
 	public override int GetNetworkChannel()
