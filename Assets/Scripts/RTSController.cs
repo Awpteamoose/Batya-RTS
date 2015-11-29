@@ -172,6 +172,7 @@ public class RTSController : NetworkBehaviour
 	[ClientRpc]
 	public void RpcGrantUnit(string unit_name)
 	{
+		if (isServer) return;
 		Debug.Log("CLIENT RECEIVED BABUSHKA");
 		ownedUnits.Add(Units.list[unit_name]);
 	}
@@ -179,6 +180,7 @@ public class RTSController : NetworkBehaviour
 	[ClientRpc]
 	public void RpcTakeUnit(string unit_name)
 	{
+		if (isServer) return;
 		Debug.Log("CLIENT LOST BABUSHKA");
 		var unit = Units.list[unit_name];
 		ownedUnits.Remove(unit);

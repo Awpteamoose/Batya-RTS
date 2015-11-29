@@ -31,7 +31,8 @@ public class Cat : MonoBehaviour
 
 		// Give it to the client
 		clientRts.ownedUnits.Add(babushka);
-		owner.RpcGrantUnit(babushka.name);
+		clientRts.RpcGrantUnit(babushka.name);
+		babushka.owner = clientRts;
 	}
 
 	void ClientToServer(Unit babushka, RTSController serverRts, RTSController clientRts)
@@ -42,6 +43,37 @@ public class Cat : MonoBehaviour
 
 		// Give it to the server
 		serverRts.ownedUnits.Add(babushka);
+		babushka.owner = serverRts;
+	}
+
+	void TransferOwnership(Unit babushka, RTSController first, RTSController second)
+	{
+		if (babushka.owner == first)
+		{
+			if (first.enabled)
+			{
+				//Debug.Log("FIRST SERVER TO CLIENT");
+				ServerToClient(babushka, first, second);
+			}
+			else
+			{
+				//Debug.Log("FIRST CLIENT TO SERVER");
+				ClientToServer(babushka, second, first);
+			}
+		}
+		else
+		{
+			if (second.enabled)
+			{
+				//Debug.Log("SECOND SERVER TO CLIENT");
+				ServerToClient(babushka, second, first);
+			}
+			else
+			{
+				//Debug.Log("SECOND CLIENT TO SERVER");
+				ClientToServer(babushka, first, second);
+			}
+		}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -49,25 +81,11 @@ public class Cat : MonoBehaviour
 		var babushka = other.GetComponent<Unit>();
 		if (babushka && babushka.owner != owner)
 		{
-			if (babushka.owner.enabled)
-			{
-				Debug.Log("BABUSHKA OWNER IS SERVER");
-				var server = babushka.owner;
-				var client = owner;
-				ServerToClient(babushka, server, client);
-				server.After(1, () => Debug.Log("WOOOOT WOOT"));
-				server.After(10, () => ClientToServer(babushka, server, client));
-			}
-			else
-			{
-				Debug.Log("BABUSHKA OWNER IS CLIENT");
-				var client = babushka.owner;
-				var server = owner;
-				ClientToServer(babushka, server, client);
-				server.After(1, () => Debug.Log("WOOOOT WORKS"));
-				server.After(10, () => ServerToClient(babushka, server, client));
-			}
-			Debug.Log("BABUSHKA CAPTURED");
+			var first = babushka.owner;
+			var second = owner;
+			TransferOwnership(babushka, first, second);
+			babushka.After(5, () => TransferOwnership(babushka, first, second));
+			//Debug.Log("BABUSHKA CAPTURED");
 			this.Cancel(destroyCoroutine);
 			Destroy(gameObject);
 		}
