@@ -1,0 +1,285 @@
+fileFormatVersion: 2
+guid: c71f5fe2f8e32464e8bae5b4c22b53e7
+timeCreated: 1448770502
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arm.L
+    100002: Arm.L_end
+    100004: Arm.R
+    100006: Arm.R_end
+    100008: Armature
+    100010: //RootNode
+    100012: Body
+    100014: Bone.001
+    100016: Bone.001 1
+    100018: Bone.002
+    100020: Bone.002 1
+    100022: Bone.003
+    100024: Bone.003 1
+    100026: Bone.004
+    100028: Bone.004 1
+    100030: Bone.005
+    100032: Bone.005 1
+    100034: Bone.009
+    100036: Bone.009 1
+    100038: Bone.010
+    100040: Bone.010 1
+    100042: Bone.012
+    100044: Bone.012 1
+    100046: Bone.014
+    100048: Bone.014 1
+    100050: Bone.016
+    100052: Bone.016 1
+    100054: Bone.018
+    100056: Bone.018 1
+    100058: Bone.020
+    100060: Bone.020 1
+    100062: Cat
+    100064: Cat2
+    100066: Cat2Armature
+    100068: CatArmature
+    100070: Chest
+    100072: Ear.L
+    100074: Ear.L 1
+    100076: Ear.L_end
+    100078: Ear.L_end 1
+    100080: Ear.R
+    100082: Ear.R 1
+    100084: Ear.R_end
+    100086: Ear.R_end 1
+    100088: glass.L
+    100090: glass.L_end
+    100092: Head
+    100094: Head 1
+    100096: Head 2
+    100098: Head.001
+    100100: Head.002
+    100102: Head.003
+    100104: Head.003_end
+    100106: Head.004
+    100108: Head.004_end
+    100110: Head_end
+    100112: Head_end 1
+    100114: Leg1.L
+    100116: Leg1.L 1
+    100118: Leg1.L_end
+    100120: Leg1.L_end 1
+    100122: Leg1.R
+    100124: Leg1.R 1
+    100126: Leg1.R_end
+    100128: Leg1.R_end 1
+    100130: Leg2.L
+    100132: Leg2.L 1
+    100134: Leg2.L_end
+    100136: Leg2.L_end 1
+    100138: Leg2.R
+    100140: Leg2.R 1
+    100142: Leg2.R_end
+    100144: Leg2.R_end 1
+    100146: Lower Leg.L
+    100148: Lower Leg.L_end
+    100150: Lower Leg.R
+    100152: Lower Leg.R_end
+    100154: MainBone
+    100156: MainBone 1
+    100158: Neck
+    100160: Neck 1
+    100162: Neck 2
+    100164: Shoulder.L
+    100166: Shoulder.R
+    100168: TailEnd
+    100170: TailEnd 1
+    100172: TailEnd_end
+    100174: TailEnd_end 1
+    100176: Torso
+    100178: trolley
+    100180: Upper Leg.L
+    100182: Upper Leg.L.001
+    100184: Wheel1
+    100186: Wheel2
+    100188: Wheel3
+    100190: Wheel4
+    400000: Arm.L
+    400002: Arm.L_end
+    400004: Arm.R
+    400006: Arm.R_end
+    400008: Armature
+    400010: //RootNode
+    400012: Body
+    400014: Bone.001
+    400016: Bone.001 1
+    400018: Bone.002
+    400020: Bone.002 1
+    400022: Bone.003
+    400024: Bone.003 1
+    400026: Bone.004
+    400028: Bone.004 1
+    400030: Bone.005
+    400032: Bone.005 1
+    400034: Bone.009
+    400036: Bone.009 1
+    400038: Bone.010
+    400040: Bone.010 1
+    400042: Bone.012
+    400044: Bone.012 1
+    400046: Bone.014
+    400048: Bone.014 1
+    400050: Bone.016
+    400052: Bone.016 1
+    400054: Bone.018
+    400056: Bone.018 1
+    400058: Bone.020
+    400060: Bone.020 1
+    400062: Cat
+    400064: Cat2
+    400066: Cat2Armature
+    400068: CatArmature
+    400070: Chest
+    400072: Ear.L
+    400074: Ear.L 1
+    400076: Ear.L_end
+    400078: Ear.L_end 1
+    400080: Ear.R
+    400082: Ear.R 1
+    400084: Ear.R_end
+    400086: Ear.R_end 1
+    400088: glass.L
+    400090: glass.L_end
+    400092: Head
+    400094: Head 1
+    400096: Head 2
+    400098: Head.001
+    400100: Head.002
+    400102: Head.003
+    400104: Head.003_end
+    400106: Head.004
+    400108: Head.004_end
+    400110: Head_end
+    400112: Head_end 1
+    400114: Leg1.L
+    400116: Leg1.L 1
+    400118: Leg1.L_end
+    400120: Leg1.L_end 1
+    400122: Leg1.R
+    400124: Leg1.R 1
+    400126: Leg1.R_end
+    400128: Leg1.R_end 1
+    400130: Leg2.L
+    400132: Leg2.L 1
+    400134: Leg2.L_end
+    400136: Leg2.L_end 1
+    400138: Leg2.R
+    400140: Leg2.R 1
+    400142: Leg2.R_end
+    400144: Leg2.R_end 1
+    400146: Lower Leg.L
+    400148: Lower Leg.L_end
+    400150: Lower Leg.R
+    400152: Lower Leg.R_end
+    400154: MainBone
+    400156: MainBone 1
+    400158: Neck
+    400160: Neck 1
+    400162: Neck 2
+    400164: Shoulder.L
+    400166: Shoulder.R
+    400168: TailEnd
+    400170: TailEnd 1
+    400172: TailEnd_end
+    400174: TailEnd_end 1
+    400176: Torso
+    400178: trolley
+    400180: Upper Leg.L
+    400182: Upper Leg.L.001
+    400184: Wheel1
+    400186: Wheel2
+    400188: Wheel3
+    400190: Wheel4
+    2300000: trolley
+    2300002: Wheel1
+    2300004: Wheel2
+    2300006: Wheel3
+    2300008: Wheel4
+    3300000: trolley
+    3300002: Wheel1
+    3300004: Wheel2
+    3300006: Wheel3
+    3300008: Wheel4
+    4300000: Cat2
+    4300002: Cat
+    4300004: Body
+    4300006: trolley
+    4300008: Wheel2
+    4300010: Wheel3
+    4300012: Wheel4
+    4300014: Wheel1
+    9500000: //RootNode
+    13700000: Body
+    13700002: Cat
+    13700004: Cat2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 0
+    normalImportMode: 1
+    tangentImportMode: 2
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
