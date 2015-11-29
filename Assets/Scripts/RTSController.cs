@@ -127,18 +127,18 @@ public class RTSController : NetworkBehaviour
 
 		if (!Application.runInBackground)
 		{
-			//var cameraPos = Camera.main.transform.position;
-			//var step = 50 * Time.deltaTime;
-			//if (Input.mousePosition.x < 1f)
-			//	cameraPos.x -= step;
-			//else if (Input.mousePosition.x > Screen.width - 1f)
-			//	cameraPos.x += step;
-			//if (Input.mousePosition.y < 1f)
-			//	cameraPos.z -= step;
-			//else if (Input.mousePosition.y > Screen.height - 1f)
-			//	cameraPos.z += step;
+			var cameraPos = Camera.main.transform.position;
+			var step = 50 * Time.deltaTime;
+			if (Input.mousePosition.x < 1f)
+				cameraPos.x -= step;
+			else if (Input.mousePosition.x > Screen.width - 1f)
+				cameraPos.x += step;
+			if (Input.mousePosition.y < 1f)
+				cameraPos.z -= step;
+			else if (Input.mousePosition.y > Screen.height - 1f)
+				cameraPos.z += step;
 
-			//Camera.main.transform.position = cameraPos;
+			Camera.main.transform.position = cameraPos;
 		}
 	}
 
