@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: GrandMaTexture
+  m_Name: DuckPupiuls
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: e0c40c2ad44ce1d43a62c70503bace39, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -135,4 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .800000012, g: .800000012, b: .800000012, a: 1}
+        second: {r: .00807579979, g: .00749514531, b: .000489320664, a: 1}

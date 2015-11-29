@@ -1,57 +1,122 @@
 fileFormatVersion: 2
-guid: f041b75008fe9384ea88325c6edf59d5
-timeCreated: 1448765589
+guid: 0a8409b727ae70d48b5122729166a42d
+timeCreated: 1448789240
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Floor
-    100002: Grass
-    100004: //RootNode
-    100006: ShelfBig1
-    100008: ShelfBig2
-    100010: ShelfBig3
-    100012: ShelfLittle1
-    100014: ShelfLittle2
-    100016: ShelfLittle3
-    100018: Walls
-    400000: Floor
-    400002: Grass
-    400004: //RootNode
-    400006: ShelfBig1
-    400008: ShelfBig2
-    400010: ShelfBig3
-    400012: ShelfLittle1
-    400014: ShelfLittle2
-    400016: ShelfLittle3
-    400018: Walls
-    2300000: Floor
-    2300002: Grass
-    2300004: ShelfBig1
-    2300006: ShelfBig2
-    2300008: ShelfBig3
-    2300010: ShelfLittle1
-    2300012: ShelfLittle2
-    2300014: ShelfLittle3
-    2300016: Walls
-    3300000: Floor
-    3300002: Grass
-    3300004: ShelfBig1
-    3300006: ShelfBig2
-    3300008: ShelfBig3
-    3300010: ShelfLittle1
-    3300012: ShelfLittle2
-    3300014: ShelfLittle3
-    3300016: Walls
-    4300000: ShelfLittle3
-    4300002: ShelfLittle2
-    4300004: ShelfLittle1
-    4300006: ShelfBig3
-    4300008: ShelfBig1
-    4300010: ShelfBig2
-    4300012: Grass
-    4300014: Floor
-    4300016: Walls
+    100000: Cube
+    100002: Cube.001
+    100004: Cube.002
+    100006: Cube.003
+    100008: Cube.004
+    100010: Cube.005
+    100012: Cube.006
+    100014: Cube.007
+    100016: Cube.008
+    100018: Cube.011
+    100020: Cube.014
+    100022: Duck.008
+    100024: EggShelf.000
+    100026: Floor
+    100028: Grass
+    100030: //RootNode
+    100032: ShelfBig1
+    100034: ShelfBig3
+    100036: ShelfLittle1
+    100038: ShelfLittle2
+    100040: Torus.000
+    100042: Torus.003
+    100044: Walls
+    400000: Cube
+    400002: Cube.001
+    400004: Cube.002
+    400006: Cube.003
+    400008: Cube.004
+    400010: Cube.005
+    400012: Cube.006
+    400014: Cube.007
+    400016: Cube.008
+    400018: Cube.011
+    400020: Cube.014
+    400022: Duck.008
+    400024: EggShelf.000
+    400026: Floor
+    400028: Grass
+    400030: //RootNode
+    400032: ShelfBig1
+    400034: ShelfBig3
+    400036: ShelfLittle1
+    400038: ShelfLittle2
+    400040: Torus.000
+    400042: Torus.003
+    400044: Walls
+    2300000: Cube
+    2300002: Cube.001
+    2300004: Cube.002
+    2300006: Cube.003
+    2300008: Cube.004
+    2300010: Cube.005
+    2300012: Cube.006
+    2300014: Cube.007
+    2300016: Cube.008
+    2300018: Cube.011
+    2300020: Cube.014
+    2300022: Duck.008
+    2300024: EggShelf.000
+    2300026: Floor
+    2300028: Grass
+    2300030: ShelfBig1
+    2300032: ShelfBig3
+    2300034: ShelfLittle1
+    2300036: ShelfLittle2
+    2300038: Torus.000
+    2300040: Torus.003
+    2300042: Walls
+    3300000: Cube
+    3300002: Cube.001
+    3300004: Cube.002
+    3300006: Cube.003
+    3300008: Cube.004
+    3300010: Cube.005
+    3300012: Cube.006
+    3300014: Cube.007
+    3300016: Cube.008
+    3300018: Cube.011
+    3300020: Cube.014
+    3300022: Duck.008
+    3300024: EggShelf.000
+    3300026: Floor
+    3300028: Grass
+    3300030: ShelfBig1
+    3300032: ShelfBig3
+    3300034: ShelfLittle1
+    3300036: ShelfLittle2
+    3300038: Torus.000
+    3300040: Torus.003
+    3300042: Walls
+    4300000: Cube.008
+    4300002: Cube.007
+    4300004: Cube.006
+    4300006: Cube.005
+    4300008: Cube.002
+    4300010: Cube.001
+    4300012: Cube
+    4300014: Cube.011
+    4300016: EggShelf.000
+    4300018: Cube.014
+    4300020: ShelfLittle2
+    4300022: Torus.000
+    4300024: Cube.003
+    4300026: ShelfLittle1
+    4300028: Torus.003
+    4300030: ShelfBig3
+    4300032: Cube.004
+    4300034: ShelfBig1
+    4300036: Duck.008
+    4300038: Grass
+    4300040: Floor
+    4300042: Walls
   materials:
     importMaterials: 1
     materialName: 0
@@ -95,7 +160,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 1
     tangentImportMode: 2
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []

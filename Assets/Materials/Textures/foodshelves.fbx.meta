@@ -1,57 +1,40 @@
 fileFormatVersion: 2
-guid: d360d06ba618051448ee32c0fd872010
-timeCreated: 1448766241
+guid: 11114a2a40d078e468b65e2584b91d08
+timeCreated: 1448792408
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Floor
-    100002: Grass
+    100000: ChickShelf
+    100002: EggShelf
     100004: //RootNode
-    100006: ShelfBig1
-    100008: ShelfBig2
-    100010: ShelfBig3
-    100012: ShelfLittle1
-    100014: ShelfLittle2
-    100016: ShelfLittle3
-    100018: Walls
-    400000: Floor
-    400002: Grass
+    100006: JuiceShelf
+    100008: MilkShelf
+    100010: PineappleShelf
+    400000: ChickShelf
+    400002: EggShelf
     400004: //RootNode
-    400006: ShelfBig1
-    400008: ShelfBig2
-    400010: ShelfBig3
-    400012: ShelfLittle1
-    400014: ShelfLittle2
-    400016: ShelfLittle3
-    400018: Walls
-    2300000: Floor
-    2300002: Grass
-    2300004: ShelfBig1
-    2300006: ShelfBig2
-    2300008: ShelfBig3
-    2300010: ShelfLittle1
-    2300012: ShelfLittle2
-    2300014: ShelfLittle3
-    2300016: Walls
-    3300000: Floor
-    3300002: Grass
-    3300004: ShelfBig1
-    3300006: ShelfBig2
-    3300008: ShelfBig3
-    3300010: ShelfLittle1
-    3300012: ShelfLittle2
-    3300014: ShelfLittle3
-    3300016: Walls
-    4300000: ShelfLittle3
-    4300002: ShelfLittle2
-    4300004: ShelfLittle1
-    4300006: ShelfBig3
-    4300008: ShelfBig1
-    4300010: ShelfBig2
-    4300012: Grass
-    4300014: Floor
-    4300016: Walls
+    400006: JuiceShelf
+    400008: MilkShelf
+    400010: PineappleShelf
+    2300000: ChickShelf
+    2300002: EggShelf
+    2300004: //RootNode
+    2300006: JuiceShelf
+    2300008: MilkShelf
+    2300010: PineappleShelf
+    3300000: ChickShelf
+    3300002: EggShelf
+    3300004: //RootNode
+    3300006: JuiceShelf
+    3300008: MilkShelf
+    3300010: PineappleShelf
+    4300000: EmptyShelf
+    4300002: PineappleShelf
+    4300004: JuiceShelf
+    4300006: MilkShelf
+    4300008: EggShelf
+    4300010: ChickShelf
   materials:
     importMaterials: 1
     materialName: 0
