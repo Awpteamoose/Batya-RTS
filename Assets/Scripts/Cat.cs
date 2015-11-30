@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Threading;
+using UnityEngine.Networking;
 
-public class Cat : MonoBehaviour
+public class Cat : NetworkBehaviour
 {
 	[HideInInspector] public RTSController owner;
 	private Coroutine destroyCoroutine;
 
 	void OnCollisionEnter(Collision collision)
 	{
+		if (!isServer) return;
 		if (collision.collider.tag == "Floor")
 		{
 			GetComponent<Rigidbody>().isKinematic = true;
@@ -78,6 +80,7 @@ public class Cat : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (!isServer || !PlayerNetworkSetup.player2) return;
 		var babushka = other.GetComponent<Unit>();
 		if (babushka && babushka.owner != owner)
 		{

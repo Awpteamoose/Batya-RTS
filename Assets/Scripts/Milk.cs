@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class Milk : MonoBehaviour
+public class Milk : NetworkBehaviour
 {
 	void OnCollisionEnter(Collision collision)
 	{
+		if (!isServer) return;
 		if (collision.collider.tag == "Floor")
 		{
 			GetComponent<Rigidbody>().isKinematic = true;
@@ -20,6 +22,7 @@ public class Milk : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		if (!isServer) return;
 		var babushka = other.GetComponent<Unit>();
 		if (babushka)
 		{

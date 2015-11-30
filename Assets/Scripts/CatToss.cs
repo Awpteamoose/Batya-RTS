@@ -13,10 +13,7 @@ public class CatToss : Ability
 
 	public override void Use(Unit self, Vector3 position)
 	{
-		var catInstance = GameObject.Instantiate(cat).transform;
-		NetworkServer.Spawn(catInstance.gameObject);
-		catInstance.position = self.transform.position + Vector3.up * 3f;
-
+		var catInstance = GameObject.Instantiate(cat, self.transform.position + Vector3.up * 3f, Quaternion.identity) as GameObject;
 		catInstance.GetComponent<Cat>().owner = self.owner;
 
 		var catRigid = catInstance.GetComponent<Rigidbody>();
@@ -24,6 +21,8 @@ public class CatToss : Ability
 		if (desiredVelocity.magnitude > 40f)
 			desiredVelocity = desiredVelocity.normalized * 40f;
 		catRigid.velocity = desiredVelocity;
+		catRigid.AddTorque(Random.insideUnitSphere.normalized * 5f, ForceMode.VelocityChange);
+		NetworkServer.Spawn(catInstance.gameObject);
 	}
 
 }

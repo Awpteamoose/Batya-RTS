@@ -24,6 +24,7 @@ public class CacheManager : NetworkBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (!PlayerNetworkSetup.player2) return;
 		if (totalCachesActive < 2)
 		{
 			timer -= Time.deltaTime;

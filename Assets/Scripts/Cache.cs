@@ -20,7 +20,6 @@ public class Cache : NetworkBehaviour
 		foodAmount = maxFoodAmount;
 		var styles = transform.Find("Styles");
 		style = styles.GetChild(Random.Range(0, styles.childCount)).name;
-		//style.SetActive(true);
 		RpcEnableVisual(style);
 	}
 
@@ -55,11 +54,13 @@ public class Cache : NetworkBehaviour
 	void RpcEnableVisual(string style)
 	{
 		transform.Find("Styles").Find(style).gameObject.SetActive(true);
+		transform.Find("Particles").gameObject.SetActive(true);
 	}
 
 	[ClientRpc]
 	void RpcDisableVisual(string style)
 	{
 		transform.Find("Styles").Find(style).gameObject.SetActive(false);
+		transform.Find("Particles").gameObject.SetActive(false);
 	}
 }
