@@ -2778,7 +2778,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448024, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 242945334}
-  m_LocalRotation: {x: .648315728, y: -.0759299845, z: -.546658039, w: .524486721}
+  m_LocalRotation: {x: .648315787, y: -.0759299919, z: -.546658099, w: .52448678}
   m_LocalPosition: {x: -.202477813, y: 1.48281556e-08, z: -1.41008059e-08}
   m_LocalScale: {x: .999999821, y: .99999994, z: .999999881}
   m_Children: []
@@ -7902,7 +7902,7 @@ MonoBehaviour:
   m_MovementTheshold: .00999999978
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
-  m_InterpolateMovement: 0
+  m_InterpolateMovement: 10
 --- !u!1 &901623422
 GameObject:
   m_ObjectHideFlags: 0
@@ -9163,7 +9163,7 @@ MonoBehaviour:
   m_MovementTheshold: .00999999978
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
-  m_InterpolateMovement: 0
+  m_InterpolateMovement: 10
 --- !u!1 &1055495253
 GameObject:
   m_ObjectHideFlags: 0
@@ -11412,7 +11412,7 @@ MonoBehaviour:
   m_MovementTheshold: .00999999978
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
-  m_InterpolateMovement: 0
+  m_InterpolateMovement: 10
 --- !u!1 &1278182556
 GameObject:
   m_ObjectHideFlags: 0
@@ -13465,7 +13465,7 @@ MonoBehaviour:
   m_MovementTheshold: .00999999978
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
-  m_InterpolateMovement: 0
+  m_InterpolateMovement: 10
 --- !u!1 &1411449995
 GameObject:
   m_ObjectHideFlags: 0
@@ -13974,7 +13974,7 @@ MonoBehaviour:
   m_MovementTheshold: .00999999978
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
-  m_InterpolateMovement: 0
+  m_InterpolateMovement: 10
 --- !u!1 &1439039530
 GameObject:
   m_ObjectHideFlags: 0
@@ -16755,7 +16755,7 @@ MonoBehaviour:
   m_MovementTheshold: .00999999978
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
-  m_InterpolateMovement: 0
+  m_InterpolateMovement: 10
 --- !u!1 &1704065030
 GameObject:
   m_ObjectHideFlags: 0
@@ -17241,7 +17241,7 @@ Transform:
   m_PrefabParentObject: {fileID: 448024, guid: 79dd892de8640004382410fb0e6eaa0c, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1737270762}
-  m_LocalRotation: {x: .648315787, y: -.0759299919, z: -.546658099, w: .52448678}
+  m_LocalRotation: {x: .648315728, y: -.0759299845, z: -.546658039, w: .524486721}
   m_LocalPosition: {x: -.202477813, y: 1.48281556e-08, z: -1.41008059e-08}
   m_LocalScale: {x: .999999821, y: .99999994, z: .999999881}
   m_Children: []
