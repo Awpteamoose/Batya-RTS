@@ -10,9 +10,8 @@ public class Milk : NetworkBehaviour
 		if (collision.collider.tag == "Floor")
 		{
 			GetComponent<Rigidbody>().isKinematic = true;
-			var collider = GetComponent<BoxCollider>();
-			collider.isTrigger = true;
-			collider.size = new Vector3(8, 1, 8);
+			GetComponent<BoxCollider>().enabled = false;
+			GetComponent<SphereCollider>().enabled = true;
 			var newForward = transform.rotation * Vector3.forward;
 			newForward.y = 0f;
 			transform.rotation = Quaternion.LookRotation(newForward);
@@ -24,12 +23,17 @@ public class Milk : NetworkBehaviour
 	{
 		if (!isServer) return;
 		var babushka = other.GetComponent<Unit>();
-		if (babushka)
+		if (babushka && !babushka.fallen)
 		{
 			babushka.Fall();
 			var rigidBabushka = babushka.GetComponent<Rigidbody>();
-			rigidBabushka.AddForce(rigidBabushka.rotation * Vector3.forward * 8f, ForceMode.VelocityChange);
-			var torque = rigidBabushka.rotation * (Random.value > 0.5f ? Vector3.up : Vector3.down);
+			var myPosProj = transform.position;
+			myPosProj.y = 0;
+			var rigidBabushkaPosProj = rigidBabushka.transform.position;
+			rigidBabushkaPosProj.y = 0;
+			var slipDir = ((myPosProj - rigidBabushkaPosProj).normalized + Vector3.up).normalized;
+			rigidBabushka.AddForce(slipDir * 10f, ForceMode.VelocityChange);
+			var torque = rigidBabushka.rotation * Random.insideUnitSphere.normalized;
 			rigidBabushka.AddTorque(torque * 300f, ForceMode.VelocityChange);
 		}
 	}

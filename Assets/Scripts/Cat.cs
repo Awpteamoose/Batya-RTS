@@ -7,6 +7,7 @@ public class Cat : NetworkBehaviour
 {
 	[HideInInspector] public RTSController owner;
 	private Coroutine destroyCoroutine;
+	private bool used;
 
 	void OnCollisionEnter(Collision collision)
 	{
@@ -14,9 +15,8 @@ public class Cat : NetworkBehaviour
 		if (collision.collider.tag == "Floor")
 		{
 			GetComponent<Rigidbody>().isKinematic = true;
-			var collider = GetComponent<BoxCollider>();
-			collider.isTrigger = true;
-			collider.size = new Vector3(10, 1, 10);
+			GetComponent<BoxCollider>().enabled = false;
+			GetComponent<SphereCollider>().enabled = true;
 			var newForward = transform.rotation * Vector3.forward;
 			newForward.y = 0f;
 			transform.rotation = Quaternion.LookRotation(newForward);
@@ -82,7 +82,7 @@ public class Cat : NetworkBehaviour
 	{
 		if (!isServer || !PlayerNetworkSetup.player2) return;
 		var babushka = other.GetComponent<Unit>();
-		if (babushka && babushka.owner != owner)
+		if (babushka && babushka.owner != owner && !used)
 		{
 			var first = babushka.owner;
 			var second = owner;
@@ -91,6 +91,7 @@ public class Cat : NetworkBehaviour
 			//Debug.Log("BABUSHKA CAPTURED");
 			this.Cancel(destroyCoroutine);
 			Destroy(gameObject);
+			used = true;
 		}
 	}
 }

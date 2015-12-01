@@ -30,7 +30,7 @@ public class TrolleyChargeProjectile : MonoBehaviour
 			babushka.Fall();
 			var babushkaRigid = babushka.GetComponent<Rigidbody>();
 			var normal = collision.contacts.Length > 0 ? collision.contacts[0].normal : collision.impulse.normalized;
-			var flyDirection = (-normal + Vector3.up + Random.insideUnitSphere.normalized * 0.25f).normalized;
+			var flyDirection = (-normal + Vector3.up).normalized;
 			babushkaRigid.AddForce(flyDirection * 650f, ForceMode.Impulse);
 			babushkaRigid.AddTorque(Random.insideUnitSphere.normalized * 100f, ForceMode.Impulse);
 		}

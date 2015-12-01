@@ -148,34 +148,43 @@ public class RTSController : NetworkBehaviour
 		Camera.main.transform.position = cameraPos;
 	}
 
-	public void TransferUnit(Unit unit)
-	{
-		if (enabled)
-		{
-			Debug.Log("OWNER IS SERVER");
-		}
-		else
-		{
-			Debug.Log("OWNER IS CLIENT");
-		}
-	}
-
 	[Command]
 	void CmdMove(string unit_name, Vector3 position)
 	{
-		Units.list[unit_name].Move(position);
+		foreach (var unit in ownedUnits)
+		{
+			if (unit.name == unit_name)
+			{
+				unit.Move(position);
+				return;
+			}
+		}
 	}
 
 	[Command]
 	void CmdStop(string unit_name)
 	{
-		Units.list[unit_name].Stop();
+		foreach (var unit in ownedUnits)
+		{
+			if (unit.name == unit_name)
+			{
+				unit.Stop();
+				return;
+			}
+		}
 	}
 
 	[Command]
 	void CmdUseAbility(string unit_name, Vector3 position)
 	{
-		Units.list[unit_name].UseAbility(position);
+		foreach (var unit in ownedUnits)
+		{
+			if (unit.name == unit_name)
+			{
+				unit.UseAbility(position);
+				return;
+			}
+		}
 	}
 
 	[ClientRpc]
@@ -183,7 +192,15 @@ public class RTSController : NetworkBehaviour
 	{
 		if (isServer) return;
 		Debug.Log("CLIENT RECEIVED BABUSHKA");
-		ownedUnits.Add(Units.list[unit_name]);
+		foreach (var unit in PlayerNetworkSetup.player1.ownedUnits)
+		{
+			if (unit.name == unit_name)
+			{
+				PlayerNetworkSetup.player1.ownedUnits.Remove(unit);
+				ownedUnits.Add(unit);
+				return;
+			}
+		}
 	}
 
 	[ClientRpc]
@@ -191,9 +208,16 @@ public class RTSController : NetworkBehaviour
 	{
 		if (isServer) return;
 		Debug.Log("CLIENT LOST BABUSHKA");
-		var unit = Units.list[unit_name];
-		ownedUnits.Remove(unit);
-		selectedUnits.Remove(unit);
-		unit.Deselect();
+		foreach (var unit in ownedUnits)
+		{
+			if (unit.name == unit_name)
+			{
+				PlayerNetworkSetup.player1.ownedUnits.Add(unit);
+				ownedUnits.Remove(unit);
+				selectedUnits.Remove(unit);
+				unit.Deselect();
+				return;
+			}
+		}
 	}
 }

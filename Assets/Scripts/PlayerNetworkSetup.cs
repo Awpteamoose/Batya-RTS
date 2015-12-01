@@ -50,6 +50,14 @@ public class PlayerNetworkSetup : NetworkBehaviour
 			else
 			{
 				// Setting up other rts controller as a client
+				player1 = rtsController;
+			    var team1 = GameObject.FindGameObjectsWithTag("Team1");
+				foreach (var unitGo in team1)
+				{
+					var unit = unitGo.GetComponent<Unit>();
+					player1.ownedUnits.Add(unit);
+					unit.owner = rtsController;
+				}
 			}
 		}
 	}

@@ -19,7 +19,6 @@ public class Unit : NetworkBehaviour
 	private Collider helpCollider;
 	private Collider trolleyCollider;
 	private NavMeshAgent agent;
-	private new Renderer renderer;
 	private new Rigidbody rigidbody;
 
 	private float standAfter;
@@ -30,9 +29,7 @@ public class Unit : NetworkBehaviour
 	void Awake()
 	{
 		agent = GetComponent<NavMeshAgent>();
-		renderer = GetComponent<Renderer>();
 		rigidbody = GetComponent<Rigidbody>();
-		Units.list[name] = this;
 	}
 
 	void Start()

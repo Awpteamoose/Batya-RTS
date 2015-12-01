@@ -625,7 +625,7 @@ MonoBehaviour:
     m_MaxSentMessageQueueSize: 128
     m_IsAcksLong: 0
     m_Channels: []
-  m_Channels: 0400000001000000
+  m_Channels: 0400000002000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
